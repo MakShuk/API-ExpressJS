@@ -4,17 +4,15 @@ const host = '127.0.0.1';
 const port = 8000;
 
 const server = http.createServer((req, res) => {
-  switch (req.method) {
-    case 'GET':
-      switch (req.url) {
-        case '/hellow':
-          res.statusCode = 200;
-          res.setHeader('Content-Type', 'text/plain');
-          res.end('Привет');
-      }
+  if (req.method === 'GET' && req.url === '/hello') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Привет');
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Страница не найдена');
   }
 });
 
 server.listen(port, host, () => {
-  console.log(`Сервер запущен на ${host}:${port}`);
+  console.log(`Server running at http://${host}:${port}/`);
 });
