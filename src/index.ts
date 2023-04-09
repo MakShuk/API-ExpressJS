@@ -1,30 +1,27 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
+const app = express();
 
-const host = '127.0.0.1';
 const port = 8000;
 
-const app = express();
-app.get('/hollo', (req, res) => {
-  res.send('Привет');
+app.all('/hello', (req: Request, res: Response, next: NextFunction): void => {
+  console.log('all');
+  next();
 });
+
+const cb = (req: Request, res: Response, next: NextFunction) => {
+  console.log('cb');
+  next();
+};
+
+app
+  .route('/user')
+  .get((req: Request, res: Response, next: NextFunction) => {
+    res.status(201).send({ sucsess: true });
+  })
+  .post((req: Request, res: Response, next: NextFunction) => {
+    res.send('Hi POST');
+  });
 
 app.listen(port, () => {
-  console.log(`Server running at https://localhost:${port}/`);
+  console.log(`Server running at http://localhost:${port}/`);
 });
-
-
-
-/* const server = http.createServer((req, res) => {
-  if (req.method === 'GET' && req.url === '/hello') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Привет');
-  } else {
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Страница не найдена');
-  }
-});
-
-server.listen(port, host, () => {
-  console.log(`Server running at http://${host}:${port}/`);
-});
- */
