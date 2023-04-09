@@ -1,4 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
+import { userRouter } from './users/users.js';
 const app = express();
 
 const port = 8000;
@@ -12,6 +13,8 @@ const cb = (req: Request, res: Response, next: NextFunction) => {
   console.log('cb');
   next();
 };
+
+app.use('/users', userRouter);
 
 app
   .route('/user')
