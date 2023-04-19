@@ -29,9 +29,8 @@ export abstract class BaseController {
   protected bindRoutes(routes: ICotrollerRoute[]): void {
     for (const route of routes) {
       const handler = route.func.bind(this);
-      this.router[route.method](route.path, route.func);
+      this.router[route.method](route.path, handler);
       this.logger.log(`[${route.method}] ${route.path}`);
-      return;
     }
   }
 }
