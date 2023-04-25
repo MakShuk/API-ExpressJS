@@ -3,21 +3,25 @@ import { Server } from 'http';
 import { LoggerService } from './logger/logger.service.js';
 import { UserController } from './users/user.conroller.js';
 import { ExeptionFilter } from './errors/exeption.filter.js';
+import { ILogger } from './logger/logger.intrerface.js';
+import { injectable, inject } from 'inversify';
+import { TYPES } from './types.js';
 
+import 'reflect-metadata';
+
+@injectable()
 export class App {
   app: Express;
   port: number;
   server: Server;
-  logger: LoggerService;
-  userController: UserController;
-  exeptionFilter: ExeptionFilter;
 
-  constructor(logger: LoggerService, UserController: UserController, exeptionFilter: ExeptionFilter) {
+  constructor(
+    @inject(TYPES.ILogger) private logger: ILogger,
+    @inject(TYPES.UserController) private userController: UserController,
+    @inject(TYPES.ExceptionFilter) private exceptionFilter: ExeptionFilter
+  ) {
     this.app = express();
     this.port = 8000;
-    this.logger = logger;
-    this.userController = UserController;
-    this.exeptionFilter = exeptionFilter;
   }
 
   useRoutes() {
@@ -25,7 +29,7 @@ export class App {
   }
 
   useExeptionFilter() {
-    this.app.use(this.exeptionFilter.catch.bind(this.exeptionFilter));
+    this.app.use(this.exceptionFilter.catch.bind(this.exceptionFilter));
   }
 
   public async init() {
