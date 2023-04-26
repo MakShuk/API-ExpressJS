@@ -5,12 +5,12 @@ import { HTTPError } from '../errors/http-error.class.js';
 import { injectable, inject } from 'inversify';
 import { ILogger } from '../logger/logger.intrerface.js';
 import { TYPES } from '../types.js';
+import { IUserController } from './user.conroller.interface.js';
 
-
-import 'reflect-metadata'; 
+import 'reflect-metadata';
 
 @injectable()
-export class UserController extends BaseController {
+export class UserController extends BaseController implements IUserController {
   constructor(@inject(TYPES.ILogger) private loggerServise: ILogger) {
     super(loggerServise);
     this.bindRoutes([

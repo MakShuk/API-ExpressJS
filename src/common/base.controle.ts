@@ -4,9 +4,7 @@ import { ICotrollerRoute } from './route.intreface.js';
 import { ILogger } from '../logger/logger.intrerface.js';
 import { injectable } from 'inversify/lib/annotation/injectable.js';
 
-
-import 'reflect-metadata'; 
-
+import 'reflect-metadata';
 
 @injectable()
 export abstract class BaseController {
