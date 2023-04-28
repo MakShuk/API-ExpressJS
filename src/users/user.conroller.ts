@@ -11,19 +11,19 @@ import 'reflect-metadata';
 
 @injectable()
 export class UserController extends BaseController implements IUserController {
-  constructor(@inject(TYPES.ILogger) private loggerServise: ILogger) {
-    super(loggerServise);
-    this.bindRoutes([
-      { path: '/register', method: 'post', func: this.register },
-      { path: '/login', method: 'post', func: this.login },
-    ]);
-  }
+	constructor(@inject(TYPES.ILogger) private loggerServise: ILogger) {
+		super(loggerServise);
+		this.bindRoutes([
+			{ path: '/register', method: 'post', func: this.register },
+			{ path: '/login', method: 'post', func: this.login },
+		]);
+	}
 
-  login(req: Request, res: Response, next: NextFunction) {
-    next(new HTTPError(401, 'Ошибка ваторизации', 'login'));
-  }
+	login(req: Request, res: Response, next: NextFunction): void {
+		next(new HTTPError(401, 'Ошибка ваторизации', 'login'));
+	}
 
-  register(req: Request, res: Response, next: NextFunction) {
-    this.ok(res, 'register');
-  }
+	register(req: Request, res: Response, next: NextFunction): void {
+		this.ok(res, 'register');
+	}
 }
