@@ -16,7 +16,6 @@ package-lock.json
 yarn.lock
 
 # Editor files
-.vscode/
 .idea/
 
 # OS-generated files
