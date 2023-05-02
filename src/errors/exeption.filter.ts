@@ -3,7 +3,7 @@ import { LoggerService } from '../logger/logger.service';
 import { IExeptionFilter } from './exeption.filter.inteface';
 import { HTTPError } from './http-error.class';
 import { injectable, inject } from 'inversify';
-import { ILogger } from '../logger/logger.intrerface';
+import { ILogger } from '../logger/logger.interface';
 import { TYPES } from '../types';
 
 import 'reflect-metadata';

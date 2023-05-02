@@ -4,10 +4,10 @@ import { LoggerService } from './logger/logger.service';
 import { UserController } from './users/user.conroller';
 import { ExeptionFilter } from './errors/exeption.filter';
 import { TYPES } from './types';
-import { ILogger } from './logger/logger.intrerface';
+import { ILogger } from './logger/logger.interface';
 import { IExeptionFilter } from './errors/exeption.filter.inteface';
-import { IUserController } from './users/user.conroller.interface';
-import { UserService } from './users/user.service';
+import { IUserController } from './users/users.controller.interface';
+import { UserService } from './users/users.service';
 import { IUserService } from './users/users.service.interface';
 
 export interface IBootstrapReturn {

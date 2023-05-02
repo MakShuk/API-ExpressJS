@@ -3,7 +3,7 @@ import { Server } from 'http';
 import { LoggerService } from './logger/logger.service';
 import { UserController } from './users/user.conroller';
 import { ExeptionFilter } from './errors/exeption.filter';
-import { ILogger } from './logger/logger.intrerface';
+import { ILogger } from './logger/logger.interface';
 import { injectable, inject } from 'inversify';
 import { TYPES } from './types';
 import { json } from 'body-parser';
