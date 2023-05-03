@@ -9,6 +9,8 @@ import { TYPES } from './types';
 import { json } from 'body-parser';
 
 import 'reflect-metadata';
+import { IExeptionFilter } from './errors/exeption.filter.inteface';
+import { IConfigService } from './config/config.service.interface';
 
 @injectable()
 export class App {
@@ -19,7 +21,8 @@ export class App {
 	constructor(
 		@inject(TYPES.ILogger) private logger: ILogger,
 		@inject(TYPES.UserController) private userController: UserController,
-		@inject(TYPES.ExceptionFilter) private exceptionFilter: ExeptionFilter,
+		@inject(TYPES.ExeptionFilter) private exeptionFilter: IExeptionFilter,
+		@inject(TYPES.ConfigService) private configService: IConfigService,
 	) {
 		this.app = express();
 		this.port = 8000;
@@ -34,7 +37,7 @@ export class App {
 	}
 
 	useExeptionFilter(): void {
-		this.app.use(this.exceptionFilter.catch.bind(this.exceptionFilter));
+		this.app.use(this.exeptionFilter.catch.bind(this.exeptionFilter));
 	}
 
 	public async init(): Promise<void> {
