@@ -23,3 +23,7 @@ yarn.lock
 Thumbs.db
 
 /.clinic
+
+#db 
+prisma/dev.db
+prisma/dev.db-journal
